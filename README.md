@@ -42,6 +42,14 @@ SE-Experiential-Learning/
 │       ├── main.py
 │       ├── Claude Chat.pdf
 │       └── README.md
+├── Lab5/                          # Static Code Analysis
+│   ├── tax_calculator.py
+│   ├── issues.md
+│   ├── reflection.md
+│   ├── pylint_report*.txt
+│   ├── bandit_report*.txt
+│   ├── flake8_report*.txt
+│   └── .gitignore
 └── README.md
 ```
 
@@ -91,6 +99,25 @@ python main.py
 ```
 **Controls:** Alternate ← → arrow keys rapidly | `R` to restart after a match
 
+### Lab 5 – Static Code Analysis
+Applied Pylint, Bandit, and Flake8 to an income-tax calculator and fixed
+security, correctness, maintainability, and formatting issues.
+
+**Deliverables:**
+- Cleaned calculator implementation (`Lab5/tax_calculator.py`)
+- Static-analysis issue table (`Lab5/issues.md`)
+- Reflection on the analysis process (`Lab5/reflection.md`)
+- Before-and-after Pylint, Bandit, and Flake8 reports
+
+**Verification results:**
+- Pylint: **10.00/10**
+- Bandit: **0 issues**
+- Flake8: **0 violations**
+
+The fixes include safe XML parsing with `defusedxml`, authenticated AES-GCM
+encryption with random nonces, a 2048-bit RSA signing key, corrected tax
+boundary calculations, and PEP 8 formatting.
+
 ## 🛠️ Tools & Technologies
 
 | Category              | Tools / Technologies                          |
@@ -101,6 +128,8 @@ python main.py
 | Project Management    | Jira                                          |
 | Diagramming           | draw.io                                       |
 | Programming           | Python 3.10+, Pygame                          |
+| Static Analysis       | Pylint, Bandit, Flake8                        |
+| Security              | Cryptography, defusedxml                     |
 | AI Assistance         | Claude (Anthropic)                            |
 | Documentation         | Markdown, PDF, DOCX                           |
 
