@@ -1,3 +1,12 @@
 *.txt
 __pycache__/
 *.py[cod]
+!pylint_report.txt
+!pylint_report_before.txt
+!pylint_report_after.txt
+!bandit_report.txt
+!bandit_report_before.txt
+!bandit_report_after.txt
+!flake8_report.txt
+!flake8_report_before.txt
+!flake8_report_after.txt
