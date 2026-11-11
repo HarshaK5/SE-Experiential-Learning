@@ -1,26 +1,55 @@
 def parse_ride_duration(text):
     """
     Converts a ride duration written as HH:MM into minutes.
-    Assumes text always has exactly one colon with digits on both sides.
+    Returns 0 when the input is missing or malformed.
     """
-    hours, minutes = text.strip().split(':')
-    return int(hours) * 60 + int(minutes)
+    if not isinstance(text, str):
+        return 0
+
+    parts = text.strip().split(':')
+    if len(parts) != 2:
+        return 0
+
+    try:
+        hours, minutes = (int(part) for part in parts)
+    except ValueError:
+        return 0
+
+    if hours < 0 or not 0 <= minutes < 60:
+        return 0
+    return hours * 60 + minutes
 
 def format_station_code(code):
     """
     Formats a station code as ZONE-NUMBER, e.g. 'a12' -> 'A-12'.
-    Assumes code is a non-empty string.
+    Returns an empty string when the input is missing or empty.
     """
+    if not isinstance(code, str):
+        return ''
+
     code = code.strip().upper()
+    if not code:
+        return ''
     return code[0] + '-' + code[1:]
 
 def parse_ride_log(line):
     """
     Parses 'bike_type,minutes,subscriber' into a tuple.
-    Assumes all three fields are present and minutes is an integer.
+    Returns a neutral tuple when the input is missing or malformed.
     """
+    if not isinstance(line, str):
+        return '', 0, False
+
     parts = line.split(',')
-    return parts[0].strip(), int(parts[1]), parts[2].strip() == 'yes'
+    if len(parts) < 3:
+        return '', 0, False
+
+    try:
+        minutes = int(parts[1].strip())
+    except ValueError:
+        return '', 0, False
+
+    return parts[0].strip(), minutes, parts[2].strip() == 'yes'
 
 def main():
     print("==== Running parse_ride_duration ====")
